@@ -1,0 +1,8 @@
+[functions.notify-driver-request]
+verify_jwt = false
+
+[functions.create-checkout-preference]
+verify_jwt = true
+
+[functions.mercado-pago-webhook]
+verify_jwt = false

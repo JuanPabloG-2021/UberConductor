@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "323638249135",
+    "firebase_url": "https://uberclone-2c059-default-rtdb.firebaseio.com",
+    "project_id": "uberclone-2c059",
+    "storage_bucket": "uberclone-2c059.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:323638249135:android:1be913fefe35f62c65765a",
+        "android_client_info": {
+          "package_name": "com.tdea.uberconductor"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBWhTXm1lyseT1DPe7_RnZGl9NbbEq_S2I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
