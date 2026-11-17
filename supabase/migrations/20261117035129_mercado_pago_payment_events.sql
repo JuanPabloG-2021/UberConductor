@@ -1,3 +1,4 @@
+-- AI-assisted: see docs/AI_LOG.md #3.
 create table public.mercado_pago_payments (
   payment_id text primary key,
   trip_id uuid not null references public.trips (id) on delete cascade,

@@ -140,6 +140,7 @@ export default function DriverHome({ navigation, route }) {
     }
   };
 
+  // AI-assisted: see docs/AI_LOG.md #3.
   const createPassengerTestTrip = useCallback(
     async (paymentMethod) => {
       if (!isReady || !location) {
@@ -163,6 +164,7 @@ export default function DriverHome({ navigation, route }) {
     }
   }, [navigation, route.params?.testPassengerMode]);
 
+  // AI-assisted: see docs/AI_LOG.md #3.
   if (isPassengerMode) {
     return (
       <PassengerTestMode

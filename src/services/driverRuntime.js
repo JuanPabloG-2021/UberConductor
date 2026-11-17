@@ -7,6 +7,7 @@ const IMAGE_FORMATS = {
   "image/webp": "webp",
 };
 
+// AI-assisted: see docs/AI_LOG.md #3.
 export async function createTestTripRequest(driverLocation, paymentMethod = "cash") {
   if (
     !Number.isFinite(driverLocation?.latitude) ||

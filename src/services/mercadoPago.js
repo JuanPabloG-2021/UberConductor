@@ -1,5 +1,6 @@
 import { supabase } from "../lib/supabase";
 
+// AI-assisted: see docs/AI_LOG.md #3.
 export async function createMercadoPagoCheckout(tripId) {
   const { data, error } = await supabase.functions.invoke(
     "create-checkout-preference",

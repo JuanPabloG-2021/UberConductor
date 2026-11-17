@@ -17,6 +17,7 @@ import { colors, spacing, typography } from "../themes";
 
 const PAYMENT_RETURN_URL = "uberconductor://checkout/return";
 
+// AI-assisted: see docs/AI_LOG.md #3.
 export default function PassengerTestMode({
   trip,
   userId,

@@ -1,8 +1,10 @@
 [functions.notify-driver-request]
 verify_jwt = false
 
+# AI-assisted: see docs/AI_LOG.md #2.
 [functions.create-checkout-preference]
 verify_jwt = true
 
+# AI-assisted: see docs/AI_LOG.md #3.
 [functions.mercado-pago-webhook]
 verify_jwt = false

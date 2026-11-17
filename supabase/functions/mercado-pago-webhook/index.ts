@@ -1,3 +1,4 @@
+// AI-assisted: see docs/AI_LOG.md #3.
 import { createClient } from "npm:@supabase/supabase-js@2";
 
 type PaymentEvent = {

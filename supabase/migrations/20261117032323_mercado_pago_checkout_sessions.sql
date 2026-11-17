@@ -1,3 +1,4 @@
+-- AI-assisted: see docs/AI_LOG.md #2.
 create table public.mercado_pago_checkout_sessions (
   trip_id uuid primary key references public.trips (id) on delete cascade,
   preference_id text not null unique,

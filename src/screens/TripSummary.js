@@ -52,6 +52,7 @@ export default function TripSummary({ navigation, route }) {
         <DriverValue label="Tarifa final" value={formatCurrency(trip.final_fare)} />
         <DriverValue label="Comisión" value={formatCurrency(trip.commission_amount)} />
         <DriverValue label="Ganancia neta" value={formatCurrency(trip.driver_net_amount)} />
+        {/* AI-assisted: see docs/AI_LOG.md #3. */}
         <DriverValue
           label="Estado del pago"
           value={getPaymentStatusLabel(trip.payment_status)}
@@ -69,6 +70,7 @@ export default function TripSummary({ navigation, route }) {
         </Text>
       ) : null}
       <DriverError>{error}</DriverError>
+      {/* AI-assisted: see docs/AI_LOG.md #3. */}
       {trip.payment_method === "cash" && trip.status === "completed" ? (
         <DriverButton
           label="Confirmar efectivo recibido"

@@ -171,6 +171,7 @@ export default function IncomingRequest({ navigation, route }) {
       <View style={driverStyles.card}>
         <Text style={driverStyles.sectionTitle}>Detalles</Text>
         <DriverValue label="Categoría" value={trip.category} />
+        {/* AI-assisted: see docs/AI_LOG.md #3. */}
         <DriverValue
           label="Método de pago"
           value={trip.payment_method === "mercado_pago" ? "Mercado Pago" : "Efectivo"}
