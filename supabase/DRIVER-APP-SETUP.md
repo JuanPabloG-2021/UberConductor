@@ -19,7 +19,7 @@ GOOGLE_MAPS_IOS_API_KEY=...
 
 Configura el identificador Android y el Bundle ID iOS de la app en Firebase/Google Cloud antes de restringir esas claves. Habilita Maps SDK for Android/iOS. Para rutas, habilita Routes API y configura `GOOGLE_MAPS_DIRECTIONS_API_KEY` como secreto de Supabase; aunque el nombre del secreto conserva `DIRECTIONS` por compatibilidad, la función `get-trip-route` usa Routes API (`computeRoutes`). Restringe esa clave a Routes API, sin restricciones de aplicación Android/iOS, porque la solicitud se realiza desde Supabase y nunca desde el bundle del teléfono.
 
-La disponibilidad solicita permisos de ubicación en primer plano y en segundo plano. Android muestra una notificación persistente de servicio de ubicación mientras está activa; al salir de Inicio se marca el conductor como no disponible, se limpia la suscripción y se detiene la tarea en segundo plano.
+La disponibilidad solicita permisos de ubicación en primer plano y en segundo plano. Android muestra una notificación persistente de servicio de ubicación mientras está activa. Al abrir una solicitud entrante se conserva la disponibilidad, pero se pausa el seguimiento mientras esa pantalla está abierta; aceptar y rechazar llaman primero a sus RPC, dentro de la ventana de oferta de 15 segundos. El backend exige que la ubicación siga vigente (30 segundos). Al abandonar Inicio por otra ruta se marca el conductor como no disponible, se limpia la suscripción y se detiene la tarea en segundo plano.
 
 ## Firebase Cloud Messaging
 

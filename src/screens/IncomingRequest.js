@@ -25,6 +25,7 @@ export default function IncomingRequest({ navigation, route }) {
   const [isProcessing, setIsProcessing] = useState(false);
   const [error, setError] = useState(null);
   const timeoutStarted = useRef(false);
+  const isProcessingRef = useRef(false);
   const expireRef = useRef(null);
   const trip = useMemo(
     () => requests.find((item) => item.id === route.params?.tripId) || requests[0],
@@ -34,25 +35,27 @@ export default function IncomingRequest({ navigation, route }) {
   const offeredAt = trip?.offered_at || trip?.requested_at;
 
   const reject = useCallback(async () => {
-    if (!trip || isProcessing) {
+    if (!trip || isProcessingRef.current) {
       return;
     }
+    isProcessingRef.current = true;
     setIsProcessing(true);
     try {
-      await setDriverAvailability(true);
       await rejectRequest(trip.id);
       navigation.goBack();
     } catch (rejectError) {
       setError(rejectError.message);
+      isProcessingRef.current = false;
       setIsProcessing(false);
     }
-  }, [isProcessing, navigation, rejectRequest, setDriverAvailability, trip]);
+  }, [navigation, rejectRequest, trip]);
 
   useEffect(() => {
     expireRef.current = async () => {
-      if (!trip || isProcessing) {
+      if (!trip || isProcessingRef.current) {
         return;
       }
+      isProcessingRef.current = true;
       setIsProcessing(true);
       dismissRequest(trip.id);
 
@@ -79,7 +82,7 @@ export default function IncomingRequest({ navigation, route }) {
           : "No se alcanzó a responder a tiempo."
       );
     };
-  }, [dismissRequest, isProcessing, navigation, setDriverAvailability, trip]);
+  }, [dismissRequest, navigation, setDriverAvailability, trip]);
 
   useEffect(() => {
     if (!trip && !isProcessing) {
@@ -96,7 +99,11 @@ export default function IncomingRequest({ navigation, route }) {
     const updateTime = () => {
       const remaining = Math.max(0, Math.ceil((deadline - Date.now()) / 1000));
       setSecondsLeft(remaining);
-      if (remaining === 0 && !timeoutStarted.current) {
+      if (
+        remaining === 0 &&
+        !timeoutStarted.current &&
+        !isProcessingRef.current
+      ) {
         timeoutStarted.current = true;
         expireRef.current?.();
       }
@@ -110,13 +117,13 @@ export default function IncomingRequest({ navigation, route }) {
   ]);
 
   const accept = useCallback(async () => {
-    if (!trip || isProcessing) {
+    if (!trip || isProcessingRef.current) {
       return;
     }
+    isProcessingRef.current = true;
     setIsProcessing(true);
     setError(null);
     try {
-      await setDriverAvailability(true);
       const acceptedTrip = await acceptRequest(trip.id);
       let availabilityError;
       try {
@@ -141,11 +148,11 @@ export default function IncomingRequest({ navigation, route }) {
       }
     } catch (acceptError) {
       setError(acceptError.message);
+      isProcessingRef.current = false;
       setIsProcessing(false);
     }
   }, [
     acceptRequest,
-    isProcessing,
     navigation,
     refreshActiveTrip,
     setDriverAvailability,

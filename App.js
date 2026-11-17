@@ -4,14 +4,14 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { NavigationContainer } from '@react-navigation/native';
 
 
-import DriverRecords from './src/navigation/DriverRecords';
+import AppNavigator from './src/navigation/AppNavigator';
 
 export default function App() {
   return (
     <SafeAreaProvider>
       <NavigationContainer style={styles.container}>
         <StatusBar style="dark" />
-        <DriverRecords />
+        <AppNavigator />
       </NavigationContainer>
     </SafeAreaProvider>
   );

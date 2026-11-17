@@ -1,6 +1,8 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { supabase } from "../lib/supabase";
 
+let earningsChannelSequence = 0;
+
 export function useEarnings(userId) {
   const [trips, setTrips] = useState([]);
   const [storedTotals, setStoredTotals] = useState({ day: 0, week: 0, month: 0 });
@@ -54,7 +56,7 @@ export function useEarnings(userId) {
     });
     const channel = userId
       ? supabase
-          .channel(`driver-earnings-${userId}`)
+          .channel(`driver-earnings-${userId}-${++earningsChannelSequence}`)
           .on(
             "postgres_changes",
             {
